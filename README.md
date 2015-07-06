@@ -10,5 +10,5 @@ This script will:
 
 4) Each website has their own access.log and error.log
 
-Plan to implement: self-signed SSL key for each website and enable HTTPS.
+5) Create and install self-signed SSL key for each website and enable HTTPS.
 
