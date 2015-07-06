@@ -1,6 +1,7 @@
 After a standard Apache installation, run this script to quickly set up multiple websites to be hosted by the server.
 
 This script will:
+
 1) Ask for the home directory where all websites directories will go under. (default '/var/www')
 
 2) Set up simple templated website for each website domain ('www.' will be default for a domain. i.e. jared.com will go to wwww.jared.com)
