@@ -30,15 +30,28 @@ try:
       sys.exit(1) 
 
     domains_input = []
-    entry = raw_input("Enter the domains, one per line. Enter a blank line to quit: \n")
+    print "Now enter the domains, e.g. domain1.com  , not www.domain1.com "
+    entry = raw_input("one per line. Enter a blank line to quit: \n")
 
     while entry:
       domains_input.append(entry)
       entry = raw_input("")
 
-    print "Setting up the domains: "  
+    if not domains_input:
+      print "There are no domains to process."
+      sys.exit(0)
+
     for domain in domains_input:
-      print domain
+      print "Plan: set up http://%s redirect to --> http://www.%s and https://www.%s" % (domain, domain, domain)
+
+    print "\nWebsites installed in: %s and install new site conf templates in /etc/apache2/sites-available ." % (html_dir)
+    confirmed = raw_input('Please confirm these actions [y/N]: ').lower()
+    
+    if confirmed == "y":
+      print "Confirmed. Proceeding now...\n"
+    else:
+      print "User does not want to proceed. Installation terminated.\n"
+      sys.exit(0)
 
 except:
     print "There was a problem - check the message above"
