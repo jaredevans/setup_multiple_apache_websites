@@ -1,6 +1,12 @@
 #!/usr/bin/python
 
-import stat, sys, os, string, commands
+import sys, os, string, commands, shutil
+
+html_dir_default = "output/"
+#html_dir_default = "/var/www/"
+
+apache_sites_available = "output/"
+#apache_sites_available = "/etc/apache2/sites-available/"
 
 try:
 
@@ -9,10 +15,10 @@ try:
 #      print "This program need 'sudo'"
 #      sys.exit(1)
 
-    html_dir = raw_input("Enter the top-level directory for installation of multiple sites (defaults to /var/www):\n")
+    html_dir = raw_input("Enter the top-level directory for installation of multiple sites (defaults to " + html_dir_default + "):\n")
 
     if not html_dir:
- 	html_dir = '/var/www'
+ 	html_dir = html_dir_default
 
     if os.path.isdir(html_dir):
       commandString = "ls " + html_dir 
@@ -36,6 +42,8 @@ try:
     while entry:
       domains_input.append(entry)
       entry = raw_input("")
+    domains_input.append("rit.com")
+    domains_input.append("gallaudet.com")
 
     if not domains_input:
       print "There are no domains to process."
@@ -44,14 +52,18 @@ try:
     for domain in domains_input:
       print "Action plan: set up http://%s redirect to --> http://www.%s and https://www.%s" % (domain, domain, domain)
 
-    print "\nWebsites installed in: %s and install new site conf templates in /etc/apache2/sites-available ." % (html_dir)
+    print "\nWebsites installed in: %s and install new site conf templates in %s ." % (html_dir,apache_sites_available)
     confirmed = raw_input('Please confirm these actions [y/N]: ').lower()
     
     if confirmed == "y":
       print "Action plans confirmed. Proceeding now...\n"
     else:
       print "User does not want to proceed. Installation terminated.\n"
-      sys.exit(0)
+#      sys.exit(0)
+
+
+    for domain in domains_input:
+      print "Setting up template for %s " % domain
 
 except:
     print "There was a problem - check the message above"
