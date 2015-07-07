@@ -1,0 +1,31 @@
+<VirtualHost *:80>
+  DocumentRoot /var/www/www.PLACEHOLDER
+  ServerName www.PLACEHOLDER
+  ErrorLog ${APACHE_LOG_DIR}/www.PLACEHOLDER-error_log
+  CustomLog ${APACHE_LOG_DIR}/www.PLACEHOLDER-access_log common
+</VirtualHost>
+
+<VirtualHost *:80>
+  ServerAlias PLACEHOLDER
+  RedirectMatch permanent ^/(.*) http://www.PLACEHOLDER/$1
+</VirtualHost>
+
+<IfModule mod_ssl.c>
+ <VirtualHost *:443>
+  ServerName www.PLACEHOLDER
+  DocumentRoot /var/www/www.PLACEHOLDER
+
+  # Enable SSL for this virtual host.
+  SSLEngine on
+  SSLCertificateFile /etc/apache2/ssl/www.PLACEHOLDER.apache.crt
+  SSLCertificateKeyFile /etc/apache2/ssl/www.PLACEHOLDER.apache.key
+ </VirtualHost>
+</IfModule>
+
+<IfModule mod_ssl.c>
+ <VirtualHost *:443>
+  ServerAlias PLACEHOLDER
+  RedirectMatch permanent ^/(.*) https://www.PLACEHOLDER/$1
+ </VirtualHost>
+</IfModule>
+
