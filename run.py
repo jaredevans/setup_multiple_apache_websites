@@ -11,7 +11,7 @@ def inplace_change(filename, old_string, new_string):
     f.flush()
     f.close()
 
-html_dir_default = "output/"
+html_dir_default = "output/www/"
 #html_dir_default = "/var/www/"
 
 apache_sites_available = "output/"
@@ -88,7 +88,15 @@ try:
       os_result = os.system(domain_openssl_cmd)
       if os_result == 0:
          print "\nSUCCESS creating the public/private keys for %s .\n" % domain
-
+      domain_html_dir = html_dir + "www." + domain + "/"
+      print "Creating %s if it doesn't exist" % domain_html_dir
+      if not os.path.exists(domain_html_dir):
+         os.mkdir(domain_html_dir)
+      domain_index_file = domain_html_dir + "index.html" 
+      print "Updating %s" % domain_index_file
+      shutil.copy("template_index_html", domain_index_file)
+      inplace_change(domain_index_file,"PLACEHOLDER",domain)
+      
       
 except:
     print "There was a problem - check the message above"
