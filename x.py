@@ -19,8 +19,7 @@ try:
       commandOutput = commands.getoutput(commandString)
       findResults = string.split(commandOutput, "\n")
 
-      print "Lines:"
-      print commandOutput
+      print commandString
       print "================================"
       for line in findResults:
         print line
