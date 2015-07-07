@@ -2,6 +2,15 @@
 
 import sys, os, string, commands, shutil
 
+def inplace_change(filename, old_string, new_string):
+  s=open(filename).read()
+  if old_string in s:
+    s=s.replace(old_string, new_string)
+    f=open(filename, 'w')
+    f.write(s)
+    f.flush()
+    f.close()
+
 html_dir_default = "output/"
 #html_dir_default = "/var/www/"
 
@@ -63,7 +72,10 @@ try:
 
 
     for domain in domains_input:
-      print "Setting up template for %s " % domain
+      print "Setting up Apache conf file for %s " % domain
+      domain_conf_file = apache_sites_available + "www." + domain + ".conf" 
+      shutil.copy("template_apache_conf", domain_conf_file)
+      inplace_change(domain_conf_file,"PLACEHOLDER",domain)
 
 except:
     print "There was a problem - check the message above"
