@@ -20,9 +20,11 @@ try:
       findResults = string.split(commandOutput, "\n")
 
       print commandString
-      print "================================"
+      print "======= has these sub-directories ======"
       for line in findResults:
         print line
+
+      print "========================================"
     else:
       print "This home directory doesn't exist on the system...Exiting now."
       sys.exit(1) 
