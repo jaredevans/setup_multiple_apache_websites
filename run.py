@@ -42,13 +42,13 @@ try:
       sys.exit(0)
 
     for domain in domains_input:
-      print "Plan: set up http://%s redirect to --> http://www.%s and https://www.%s" % (domain, domain, domain)
+      print "Action plan: set up http://%s redirect to --> http://www.%s and https://www.%s" % (domain, domain, domain)
 
     print "\nWebsites installed in: %s and install new site conf templates in /etc/apache2/sites-available ." % (html_dir)
     confirmed = raw_input('Please confirm these actions [y/N]: ').lower()
     
     if confirmed == "y":
-      print "Confirmed. Proceeding now...\n"
+      print "Action plans confirmed. Proceeding now...\n"
     else:
       print "User does not want to proceed. Installation terminated.\n"
       sys.exit(0)
