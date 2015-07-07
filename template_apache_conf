@@ -17,8 +17,8 @@
 
   # Enable SSL for this virtual host.
   SSLEngine on
-  SSLCertificateFile /etc/apache2/ssl/www.PLACEHOLDER.apache.crt
-  SSLCertificateKeyFile /etc/apache2/ssl/www.PLACEHOLDER.apache.key
+  SSLCertificateFile /etc/apache2/ssl/www.PLACEHOLDER.crt
+  SSLCertificateKeyFile /etc/apache2/ssl/www.PLACEHOLDER.key
  </VirtualHost>
 </IfModule>
 

@@ -12,26 +12,26 @@ def inplace_change(filename, old_string, new_string):
     f.close()
 
 etchosts = 'output/hosts'
-#etchosts = '/etc/hosts'
+etchosts = '/etc/hosts'
 
 html_dir_default = "output/www/"
-#html_dir_default = "/var/www/"
+html_dir_default = "/var/www/"
 
 apache_sites_available = "output/"
-#apache_sites_available = "/etc/apache2/sites-available/"
+apache_sites_available = "/etc/apache2/sites-available/"
 
 apache_ssl = "output/ssl/"
-#apache_ssl = "/etc/apache2/ssl/"
+apache_ssl = "/etc/apache2/ssl/"
 
 openssl_cmd = '/usr/bin/openssl req -x509 -nodes -days 3650 -newkey rsa:2048 -keyout %swww.PLACEHOLDER.key -out %swww.PLACEHOLDER.crt -subj "/C=US/ST=FL/L=Tampa/O=Local Security/OU=WebDev/CN=PLACEHOLDER" ' % (apache_ssl,apache_ssl) 
 
 
 try:
 
-#    user = os.getenv("SUDO_USER")
-#    if user is None:
-#      print "This program need 'sudo'"
-#      sys.exit(1)
+    user = os.getenv("SUDO_USER")
+    if user is None:
+      print "This program need 'sudo'"
+      sys.exit(1)
 
     html_dir = raw_input("Enter the top-level directory for installation of multiple sites (defaults to " + html_dir_default + "):\n")
 
@@ -44,7 +44,7 @@ try:
       findResults = string.split(commandOutput, "\n")
 
       print commandString
-      print "======= has these sub-directories ======"
+      print "======= has these files or sub-directories ======"
       for line in findResults:
         print line
 
@@ -60,8 +60,6 @@ try:
     while entry:
       domains_input.append(entry)
       entry = raw_input("")
-    domains_input.append("domain1.com")
-    domains_input.append("domain2.com")
 
     if not domains_input:
       print "There are no domains to process."
