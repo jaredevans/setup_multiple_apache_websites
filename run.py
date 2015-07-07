@@ -54,7 +54,7 @@ try:
       sys.exit(1) 
 
     domains_input = []
-    print "Now enter the domains, e.g. domain1.com  , not www.domain1.com "
+    print "Now enter the domains without the 'www.', e.g. domain1.com , not www.domain1.com "
     entry = raw_input("one per line. Enter a blank line to quit: \n")
 
     while entry:
