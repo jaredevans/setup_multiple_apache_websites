@@ -17,6 +17,11 @@ html_dir_default = "output/"
 apache_sites_available = "output/"
 #apache_sites_available = "/etc/apache2/sites-available/"
 
+apache_ssl = "output/ssl/"
+#apache_ssl = "/etc/apache2/ssl/"
+
+openssl_cmd = '/usr/bin/openssl req -x509 -nodes -days 3650 -newkey rsa:2048 -keyout %swww.PLACEHOLDER.key -out %swww.PLACEHOLDER.crt -subj "/C=US/ST=FL/L=Tampa/O=Local Security/OU=WebDev/CN=PLACEHOLDER" ' % (apache_ssl,apache_ssl) 
+
 try:
 
 #    user = os.getenv("SUDO_USER")
@@ -69,14 +74,23 @@ try:
     else:
       print "User does not want to proceed. Installation terminated.\n"
 #      sys.exit(0)
-
+    
+    if not os.path.exists(apache_ssl):
+      os.mkdir(apache_ssl)
 
     for domain in domains_input:
       print "Setting up Apache conf file for %s " % domain
       domain_conf_file = apache_sites_available + "www." + domain + ".conf" 
       shutil.copy("template_apache_conf", domain_conf_file)
       inplace_change(domain_conf_file,"PLACEHOLDER",domain)
+      domain_openssl_cmd = openssl_cmd
+      domain_openssl_cmd = domain_openssl_cmd.replace("PLACEHOLDER",domain)
+      print domain_openssl_cmd
+      os_result = os.system(domain_openssl_cmd)
+      if os_result == 0:
+         print "\nSUCCESS creating the public/private keys for %s .\n" % domain
 
+      
 except:
     print "There was a problem - check the message above"
 
