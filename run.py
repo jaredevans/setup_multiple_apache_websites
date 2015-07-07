@@ -79,10 +79,11 @@ try:
       os.mkdir(apache_ssl)
 
     for domain in domains_input:
-      print "Setting up Apache conf file for %s " % domain
+      print "\n\n======================\nInstalling Apache conf file for %s " % domain
       domain_conf_file = apache_sites_available + "www." + domain + ".conf" 
       shutil.copy("template_apache_conf", domain_conf_file)
       inplace_change(domain_conf_file,"PLACEHOLDER",domain)
+      print "Creating and installing private/public key for %s " % domain
       domain_openssl_cmd = openssl_cmd
       domain_openssl_cmd = domain_openssl_cmd.replace("PLACEHOLDER",domain)
       os_result = os.system(domain_openssl_cmd)
@@ -93,7 +94,7 @@ try:
       if not os.path.exists(domain_html_dir):
          os.mkdir(domain_html_dir)
       domain_index_file = domain_html_dir + "index.html" 
-      print "Updating %s" % domain_index_file
+      print "Creating %s" % domain_index_file
       shutil.copy("template_index_html", domain_index_file)
       inplace_change(domain_index_file,"PLACEHOLDER",domain)
       
