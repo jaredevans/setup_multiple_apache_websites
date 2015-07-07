@@ -54,11 +54,13 @@ Pre-configure SSL for each sites:
 a2enmod ssl
 mkdir /etc/apache2/ssl
 
-sudo openssl req -x509 -nodes -days 3650 -newkey rsa:2048 -keyout  \
-/etc/apache2/ssl/www.domain1.com.apache.key -out /etc/apache2/ssl/www.domain1.com.apache.crt
+sudo openssl req -nodes -newkey rsa:2048 -keyout  \
+/etc/apache2/ssl/www.domain1.com.key -out /etc/apache2/ssl/wwww.domain1.com.crt \
+-subj "/C=US/ST=FL/L=Tampa/O=Local Security/OU=WebDev/CN=domain1.com"
 
-sudo openssl req -x509 -nodes -days 3650 -newkey rsa:2048 -keyout  \
-/etc/apache2/ssl/www.domain2.com.apache.key -out /etc/apache2/ssl/www.domain2.com.apache.crt
+sudo openssl req -nodes -newkey rsa:2048 -keyout  \
+/etc/apache2/ssl/www.domain2.com.key -out /etc/apache2/ssl/wwww.domain2.com.crt \
+-subj "/C=US/ST=FL/L=Tampa/O=Local Security/OU=WebDev/CN=domain2.com"
 
 ------------------------------------
  
