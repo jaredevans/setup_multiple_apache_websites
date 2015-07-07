@@ -11,6 +11,9 @@ def inplace_change(filename, old_string, new_string):
     f.flush()
     f.close()
 
+etchosts = 'output/hosts'
+#etchosts = '/etc/hosts'
+
 html_dir_default = "output/www/"
 #html_dir_default = "/var/www/"
 
@@ -21,6 +24,7 @@ apache_ssl = "output/ssl/"
 #apache_ssl = "/etc/apache2/ssl/"
 
 openssl_cmd = '/usr/bin/openssl req -x509 -nodes -days 3650 -newkey rsa:2048 -keyout %swww.PLACEHOLDER.key -out %swww.PLACEHOLDER.crt -subj "/C=US/ST=FL/L=Tampa/O=Local Security/OU=WebDev/CN=PLACEHOLDER" ' % (apache_ssl,apache_ssl) 
+
 
 try:
 
@@ -56,8 +60,8 @@ try:
     while entry:
       domains_input.append(entry)
       entry = raw_input("")
-    domains_input.append("rit.com")
-    domains_input.append("gallaudet.com")
+    domains_input.append("domain1.com")
+    domains_input.append("domain2.com")
 
     if not domains_input:
       print "There are no domains to process."
@@ -90,14 +94,32 @@ try:
       if os_result == 0:
          print "\nSUCCESS creating the public/private keys for %s .\n" % domain
       domain_html_dir = html_dir + "www." + domain + "/"
-      print "Creating %s if it doesn't exist" % domain_html_dir
+      print "Creating directory %s , if it doesn't exist" % domain_html_dir
       if not os.path.exists(domain_html_dir):
          os.mkdir(domain_html_dir)
       domain_index_file = domain_html_dir + "index.html" 
-      print "Creating %s" % domain_index_file
+      print "Creating file %s" % domain_index_file
       shutil.copy("template_index_html", domain_index_file)
       inplace_change(domain_index_file,"PLACEHOLDER",domain)
       
+   
+    print "\n==================\nEnabling Apache SSL module."
+    os_result = os.system("sudo a2enmod ssl")
+    print "==================\n"
+    for domain in domains_input:
+      print "Enabling www.%s" % domain
+      os_result = os.system("sudo a2ensite www." + domain)
+
+    print "\n==================\nRestarting Apache."
+    os_result = os.system("service apache2 restart")
+ 
+    print "Adding domains to your hosts file at: %s " % etchosts
+    with open(etchosts, "a") as hostsfile:
+      hostsfile.write("\n")
+      for domain in domains_input:
+        domain_line = "127.0.1.1     " + domain + "  www." + domain + "\n" 
+        hostsfile.write(domain_line)
+
       
 except:
     print "There was a problem - check the message above"
