@@ -85,7 +85,6 @@ try:
       inplace_change(domain_conf_file,"PLACEHOLDER",domain)
       domain_openssl_cmd = openssl_cmd
       domain_openssl_cmd = domain_openssl_cmd.replace("PLACEHOLDER",domain)
-      print domain_openssl_cmd
       os_result = os.system(domain_openssl_cmd)
       if os_result == 0:
          print "\nSUCCESS creating the public/private keys for %s .\n" % domain
