@@ -118,7 +118,10 @@ try:
       hostsfile.write("\n")
       for domain in domains_input:
         domain_line = "127.0.1.1     " + domain + "  www." + domain + "\n" 
-        hostsfile.write(domain_line)
+        if domain in open(etchosts).read():
+	  print "%s was found in the hosts file, skipping..." % domain
+        else:
+	  hostsfile.write(domain_line)
 
       
 except:
