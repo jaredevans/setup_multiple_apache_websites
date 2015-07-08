@@ -1,5 +1,5 @@
 Target audience: 
-Web developers or systems administrators who want to quickly set up Apache web servers for development or testing purposes.
+Web developers or systems administrators who want to quickly set up multiple websites on Apache web server for development or testing purposes.
 
 After a standard Apache web server installation, run this script to quickly set up multiple websites (Named Virtual Hosts)
 
