@@ -6,7 +6,7 @@
 
 <p>Web developers or systems administrators who want to quickly set up multiple websites on Apache web server for development or testing purposes.</p>
 
-<p>Rrun this script to quickly set up multiple websites as&nbsp;Named Virtual Hosts.</p>
+<p>Run this script to quickly set up multiple websites as Named Virtual Hosts.</p>
 
 <p>This script will do the following:</p>
 
