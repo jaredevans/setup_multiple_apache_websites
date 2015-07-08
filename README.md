@@ -33,7 +33,7 @@
 	<li>Auto enables Apache SSL module</li>
 	<li>Auto enables the websites<br />
 	&nbsp;</li>
-	<li>Adds the domains to your /etc/hosts and couple them to 127.0.1.1 (in the localhost range 127.0.0.0/8).</li>
+	<li>Add the domains to your /etc/hosts and couple them to 127.0.1.1 (in the localhost range 127.0.0.0/8).</li>
 </ul>
 
 <p><ins>How to run</ins></p>
