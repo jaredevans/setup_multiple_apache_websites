@@ -38,7 +38,7 @@ openssl_cmd = '/usr/bin/openssl req -x509 -nodes -days 3650 -newkey rsa:2048 -ke
 
 try:
 
-    # This script nees to run with sudo privs
+    # This script needs to run with sudo privs
     user = os.getenv("SUDO_USER")
     if user is None:
       print "This program need 'sudo'"
