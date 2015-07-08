@@ -16,6 +16,10 @@ def inplace_change(filename, old_string, new_string):
     f.flush()
     f.close()
 
+# Some variables are listed twice below.  
+# Comment out the second one while debugging.  
+# The results will go to the 'output' directory instead and avoid messing up your live files.
+
 # Location of system hosts file. First is for debugging, second for actual location
 etchosts = 'output/hosts'
 etchosts = '/etc/hosts'
