@@ -14,7 +14,7 @@
 	<li>Ask where to place the websites&#39; home directories (defaults to /var/www/)</li>
 	<li>Ask for all the domains you want to be created at once.
 	<ul>
-		<li>[use domain names like: domain1.com ,&nbsp;not www.domain1.com&nbsp;]<br />
+		<li>Enter domain names without using 'www': domain1.com , not www.domain1.com<br />
 		&nbsp;</li>
 	</ul>
 	</li>
