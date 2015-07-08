@@ -8,6 +8,8 @@
 
 <h1>Under the hood:</h1>
 
+<p><span style="line-height: 20.7999992370605px;">Developed and tested on a vanilla Ubuntu system.</span></p>
+
 <p>End results: Quickly set up multiple websites as&nbsp;Named Virtual Hosts.</p>
 
 <p>This script will do the following:</p>
