@@ -6,7 +6,7 @@
 
 <p>Web developers or systems administrators who want to quickly set up multiple websites on Apache web server for development or testing purposes.</p>
 
-<p>Run this script to quickly set up multiple websites as Named Virtual Hosts.</p>
+<p>Run this script to quickly set up multiple websites as&nbsp;Named Virtual Hosts.</p>
 
 <p>This script will do the following:</p>
 
@@ -14,11 +14,15 @@
 	<li>Ask where to place the websites&#39; home directories (defaults to /var/www/)</li>
 	<li>Ask for all the domains you want to be created at once.
 	<ul>
-		<li>[use domain names like: domain1.com &nbsp;(not www.domain1.com)]<br />
+		<li>[use domain names like: domain1.com ,&nbsp;not www.domain1.com&nbsp;]<br />
 		&nbsp;</li>
 	</ul>
 	</li>
-	<li>Create the Apache site conf file for each website (/etc/apache2/sites-available)</li>
+	<li>Create the Apache site conf file for each website (/etc/apache2/sites-available)
+	<ul>
+		<li>domain1.com will be permanently redirected to www.domain1.com</li>
+	</ul>
+	</li>
 	<li>Create self-signed SSL keys for each website (/etc/apache2/ssl)</li>
 	<li>Create web home directories with barebones index.html<br />
 	&nbsp;</li>
