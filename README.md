@@ -1,20 +1,29 @@
-Target audience: 
-Web developers or systems administrators who want to quickly set up multiple websites on Apache web server for development or testing purposes.
+<h1>Purpose:</h1>
 
-After a standard Apache web server installation, run this script to quickly set up multiple websites (Named Virtual Hosts)
+<p>Quickly create multiple websites (http and https) after a standard Apache installation to get rolling right away!</p>
 
-This script will do the following:
+<h1>Target audience:</h1>
 
-Ask where to place the websites' home directories (defaults to /var/www/)
-Ask for all the domains you want to be created at once.
-   [use domain names like: domain1.com  (not www.domain1.com)]
+<p>Web developers or systems administrators who want to quickly set up multiple websites on Apache web server for development or testing purposes.</p>
 
-Create the Apache site conf file for each website (/etc/apache2/sites-available)
-Create self-signed SSL keys for each website (/etc/apache2/ssl)
-Create web home directories with barebones index.html
+<p>Rrun this script to quickly set up multiple websites as&nbsp;Named Virtual Hosts.</p>
 
-Auto enables Apache SSL module
-Auto enables the websites
+<p>This script will do the following:</p>
 
-Adds the domains to your /etc/hosts and couple them to 127.0.1.1 (in the localhost range 127.0.0.0/8).
-
+<ul>
+	<li>Ask where to place the websites&#39; home directories (defaults to /var/www/)</li>
+	<li>Ask for all the domains you want to be created at once.
+	<ul>
+		<li>[use domain names like: domain1.com &nbsp;(not www.domain1.com)]<br />
+		&nbsp;</li>
+	</ul>
+	</li>
+	<li>Create the Apache site conf file for each website (/etc/apache2/sites-available)</li>
+	<li>Create self-signed SSL keys for each website (/etc/apache2/ssl)</li>
+	<li>Create web home directories with barebones index.html<br />
+	&nbsp;</li>
+	<li>Auto enables Apache SSL module</li>
+	<li>Auto enables the websites<br />
+	&nbsp;</li>
+	<li>Adds the domains to your /etc/hosts and couple them to 127.0.1.1 (in the localhost range 127.0.0.0/8).</li>
+</ul>
