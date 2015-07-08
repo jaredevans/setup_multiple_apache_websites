@@ -16,5 +16,5 @@ Create web home directories with barebones index.html
 Auto enables Apache SSL module
 Auto enables the websites
 
-Adds the domains to your /etc/hosts using a localhost-like IP address, 127.0.1.1
+Adds the domains to your /etc/hosts and couples to 127.0.1.1 in the localhost range 127.0.0.0/8.
 
