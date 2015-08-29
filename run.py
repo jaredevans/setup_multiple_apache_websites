@@ -1,5 +1,7 @@
 #!/usr/bin/python
 
+# TO-DO: Change from direct procedural style to an object oriented module so can be imported to other packages.
+
 import sys 
 import os 
 import string 
