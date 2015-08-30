@@ -74,7 +74,7 @@ def setup_domains (webdir, domains):
    
          print "================================================="
        else:
-         print "This home directory doesn't exist on the system...Exiting now."
+         print "Sorry, %s doesn't exist on this system...Exiting now." % html_dir
          sys.exit(1) 
    
        # Ask for all the domains to be created as a website.
