@@ -1,6 +1,7 @@
 #!/usr/bin/python
 
 # TO-DO: Change from direct procedural style to an object oriented module so can be imported to other packages.
+# TO-DO: use argparse for command line switches
 
 import sys 
 import os 
