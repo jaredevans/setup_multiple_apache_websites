@@ -162,10 +162,10 @@ def main ():
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="Set up multiple Apache websites")
-    parser.add_argument("-w" , "--htmldir", default=["/var/www"], nargs=1, help="Location of html home directory, defaults to /var/www")
-    parser.add_argument("-d" , "--domains", default=["domain1.com", "domain2.com"], nargs="+", help="List of domains, defaults to domain1.com domain2.com. Don't include the 'www.' prefix since that's taken care of.")
+    parser.add_argument("-w" , "--webdir", default=["/var/www"], nargs=1, help="Location of webserver home directory, defaults to /var/www")
+    parser.add_argument("-d" , "--domains", default=["domain1.com", "domain2.com"], nargs="+", help="List of domains, defaults to domain1.com domain2.com. Don't include the 'www.' prefix since that will be taken care of.")
     args = parser.parse_args()
-    print "Installed to:  %s" % args.htmldir[0]
+    print "Installed to:  %s" % args.webdir[0]
     for domain in args.domains:
        print " -- Creating:  %s" % domain
 
