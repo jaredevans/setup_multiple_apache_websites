@@ -28,19 +28,19 @@ def setup_domains (webdir, domains):
    # The results will go to the 'output' directory instead and avoid messing up your live files.
    
    # Location of system hosts file. First is for debugging, second for actual location
-   #etchosts = 'output/hosts'
+   etchosts = 'output/hosts'
    etchosts = '/etc/hosts'
    
    # Location of home directories for websites. First is for debugging, second for actual location
-   #html_dir_default = "output/var/www/"
+   html_dir_default = "output/var/www/"
    html_dir_default = "/var/www/"
    
    # Location of Apache config directory. First is for debugging, second for actual location
-   #apache_sites_available = "output/"
+   apache_sites_available = "output/"
    apache_sites_available = "/etc/apache2/sites-available/"
    
    # Location of Apache ssl directory. First is for debugging, second for actual location
-   #apache_ssl = "output/ssl/"
+   apache_ssl = "output/ssl/"
    apache_ssl = "/etc/apache2/ssl/"
    
    # The openssl command to auto-generate a SSL certificate
