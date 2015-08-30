@@ -1,5 +1,5 @@
 <VirtualHost *:80>
-  DocumentRoot /var/www/www.PLACEHOLDER
+  DocumentRoot WEBDIRPH/www.PLACEHOLDER
   ServerName www.PLACEHOLDER
   ErrorLog ${APACHE_LOG_DIR}/www.PLACEHOLDER-error_log
   CustomLog ${APACHE_LOG_DIR}/www.PLACEHOLDER-access_log common
@@ -13,7 +13,7 @@
 <IfModule mod_ssl.c>
  <VirtualHost *:443>
   ServerName www.PLACEHOLDER
-  DocumentRoot /var/www/www.PLACEHOLDER
+  DocumentRoot WEBDIRPH/www.PLACEHOLDER
 
   # Enable SSL for this virtual host.
   SSLEngine on

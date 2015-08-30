@@ -1,8 +1,5 @@
 #!/usr/bin/python
 
-# TO-DO: Change from direct procedural style to an object oriented module so can be imported to other packages.
-# TO-DO: use argparse for command line switches
-
 import sys 
 import os 
 import string 
@@ -20,26 +17,31 @@ def inplace_change(filename, old_string, new_string):
     f.flush()
     f.close()
 
-def main ():
+def setup_domains (webdir, domains):
+
+   #print "-Installed to:  %s" % webdir
+   #for domain in domains:
+   #    print " --- Creating:  %s" % domain
+
    # Some variables are listed twice below.  
    # Comment out the second one while debugging.  
    # The results will go to the 'output' directory instead and avoid messing up your live files.
    
    # Location of system hosts file. First is for debugging, second for actual location
-   etchosts = 'output/hosts'
-   #etchosts = '/etc/hosts'
+   #etchosts = 'output/hosts'
+   etchosts = '/etc/hosts'
    
    # Location of home directories for websites. First is for debugging, second for actual location
-   html_dir_default = "output/www/"
-   #html_dir_default = "/var/www/"
+   #html_dir_default = "output/var/www/"
+   html_dir_default = "/var/www/"
    
    # Location of Apache config directory. First is for debugging, second for actual location
-   apache_sites_available = "output/"
-   #apache_sites_available = "/etc/apache2/sites-available/"
+   #apache_sites_available = "output/"
+   apache_sites_available = "/etc/apache2/sites-available/"
    
    # Location of Apache ssl directory. First is for debugging, second for actual location
-   apache_ssl = "output/ssl/"
-   #apache_ssl = "/etc/apache2/ssl/"
+   #apache_ssl = "output/ssl/"
+   apache_ssl = "/etc/apache2/ssl/"
    
    # The openssl command to auto-generate a SSL certificate
    openssl_cmd = '/usr/bin/openssl req -x509 -nodes -days 3650 -newkey rsa:2048 -keyout %swww.PLACEHOLDER.key -out %swww.PLACEHOLDER.crt -subj "/C=US/ST=FL/L=Tampa/O=Local Security/OU=WebDev/CN=PLACEHOLDER" ' % (apache_ssl,apache_ssl) 
@@ -54,7 +56,7 @@ def main ():
          sys.exit(1)
    
        # Ask where to put the directories for the websites. defaults to /var/www
-       html_dir = raw_input("Enter the top-level directory for installation of multiple sites (defaults to " + html_dir_default + "):\n")
+       html_dir = webdir
    
        if not html_dir:
     	html_dir = html_dir_default
@@ -70,30 +72,25 @@ def main ():
          for line in findResults:
            print line
    
-         print "========================================"
+         print "================================================="
        else:
          print "This home directory doesn't exist on the system...Exiting now."
          sys.exit(1) 
    
        # Ask for all the domains to be created as a website.
        domains_input = []
-       print "Now enter the domains without the 'www.', e.g. domain1.com , not www.domain1.com "
-       entry = raw_input("one per line. Enter a blank line to quit: \n")
-   
-       while entry:
-         domains_input.append(entry)
-         entry = raw_input("")
-   
+       domains_input = domains
        if not domains_input:
          print "There are no domains to process."
          sys.exit(0)
    
        # Show the user the Action Plans of what will happen and get a confirmation that all is good to proceed.
        for domain in domains_input:
-         print "Action plan: set up http://%s redirect to --> http://www.%s and https://www.%s" % (domain, domain, domain)
+         print "Action plan: set up http://%s redirect to   --> http://www.%s   and --> https://www.%s" % (domain, domain, domain)
    
        # Get confirmation from the user before proceeding
-       print "\nWebsites installed in: %s and install new site conf templates in %s ." % (html_dir,apache_sites_available)
+       print "\nWebsites installed in: %s   -and-   install apache site confs in %s ." % (html_dir,apache_sites_available)
+       print "\nIf you need to adjust these values, CTRL-C now and run   setup_domains.py -h   to see your options."
        confirmed = raw_input('Please confirm these actions [y/N]: ').lower()
        
        if confirmed == "y":
@@ -115,6 +112,7 @@ def main ():
          print "\n\n======================\nInstalling Apache conf file for %s " % domain
          domain_conf_file = apache_sites_available + "www." + domain + ".conf" 
          shutil.copy("template_apache_conf", domain_conf_file)
+         inplace_change(domain_conf_file,"WEBDIRPH",html_dir)
          inplace_change(domain_conf_file,"PLACEHOLDER",domain)
          print "Creating and installing private/public key for %s " % domain
          domain_openssl_cmd = openssl_cmd
@@ -122,7 +120,7 @@ def main ():
          os_result = os.system(domain_openssl_cmd)
          if os_result == 0:
             print "\nSUCCESS creating the public/private keys for %s .\n" % domain
-         domain_html_dir = html_dir + "www." + domain + "/"
+         domain_html_dir = html_dir + "/www." +  domain + "/"
          print "Creating directory %s , if it doesn't exist" % domain_html_dir
          if not os.path.exists(domain_html_dir):
             os.mkdir(domain_html_dir)
@@ -165,8 +163,5 @@ if __name__ == "__main__":
     parser.add_argument("-w" , "--webdir", default=["/var/www"], nargs=1, help="Location of webserver home directory, defaults to /var/www")
     parser.add_argument("-d" , "--domains", default=["domain1.com", "domain2.com"], nargs="+", help="List of domains, defaults to domain1.com domain2.com. Don't include the 'www.' prefix since that will be taken care of.")
     args = parser.parse_args()
-    print "Installed to:  %s" % args.webdir[0]
-    for domain in args.domains:
-       print " -- Creating:  %s" % domain
 
-    #main()
+    setup_domains(args.webdir[0], args.domains)

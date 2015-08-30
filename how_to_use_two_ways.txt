@@ -1,0 +1,17 @@
+There are two different ways to set the two parameters (the master home directory of websites and the domains to be created).
+
+1) At the command line.  Check out the -h (Help) switch
+
+   setup_domains.py -h
+
+    -w WEBDIR, --webdir WEBDIR    Location of webserver home directory, defaults to /var/www
+    -d DOMAINS [DOMAINS ...], --domains DOMAINS [DOMAINS ...]
+                        List of domains, defaults to domain1.com domain2.com. 
+                        Don't include the 'www.' prefix since that will be taken care of.
+
+   sudo ./setup_domains.py -w /var/www -d domain1.com domain2.com
+
+2) Or import the function into your own script. Check out the example.py
+
+   setup_domains("/var/www", ["test1.com", "test2.com"])
+
