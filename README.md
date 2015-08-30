@@ -28,5 +28,5 @@
 <li>Add the domains to your /etc/hosts and couple them to 127.0.1.1 (in the localhost range 127.0.0.0/8).</li>
 </ul>
 <p><ins>How to run</ins></p>
-<pre>chmod u+x run.py
-sudo ./run.py -h  (view the help screen for the switches you need to set)<br />   -w WEBDIR, --webdir WEBDIR Location of webserver home directory, defaults to /var/www<br />   -d DOMAINS [DOMAINS ...], --domains DOMAINS [DOMAINS ...]<br />       List of domains, defaults to domain1.com domain2.com.<br />       Don't include the 'www.' prefix since that will be taken care of.<br /><br />sudo ./setup_domains.py -w /var/www -d domain1.com domain2.com<br /><br />--or--<br /><br />Look at example.py for how to incorporate the function into your own script</pre>
+<pre>chmod u+x setup_domains.py
+sudo ./setup_domains.py -h  (view the help screen for the switches you need to set)<br />   -w WEBDIR, --webdir WEBDIR Location of webserver home directory, defaults to /var/www<br />   -d DOMAINS [DOMAINS ...], --domains DOMAINS [DOMAINS ...]<br />       List of domains, defaults to domain1.com domain2.com.<br />       Don't include the 'www.' prefix since that will be taken care of.<br /><br />sudo ./setup_domains.py -w /var/www -d domain1.com domain2.com<br /><br />--or--<br /><br />Look at example.py for how to incorporate the function into your own script</pre>
