@@ -26,6 +26,11 @@
  <VirtualHost *:443>
   ServerAlias PLACEHOLDER
   RedirectMatch permanent ^/(.*) https://www.PLACEHOLDER/$1
+
+  # Enable SSL for this virtual host.
+  SSLEngine on
+  SSLCertificateFile /etc/apache2/ssl/www.PLACEHOLDER.crt
+  SSLCertificateKeyFile /etc/apache2/ssl/www.PLACEHOLDER.key
  </VirtualHost>
 </IfModule>
 
